@@ -1,103 +1,262 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import Link from "next/link"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Calendar, MapPin, Euro, Star, ArrowRight, Search, Filter, TrendingUp, Shield, Users, Zap } from "lucide-react"
+import Header from "@/components/Header"
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl font-bold mb-6">
+              La plateforme de revente de billets
+              <span className="block text-blue-200">la plus sécurisée</span>
+            </h1>
+            <p className="text-xl mb-8 text-blue-100">
+              Achetez et vendez vos billets d'événements en toute confiance. 
+              Commission transparente de 10% seulement.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/tickets">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                  <Search className="w-5 h-5 mr-2" />
+                  Trouver des événements
+                </Button>
+              </Link>
+              <Link href="/creer-evenement">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+                  <TrendingUp className="w-5 h-5 mr-2" />
+                  Vendre mes billets
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Avantages */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Pourquoi choisir BilletLibre ?
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Une plateforme moderne et sécurisée pour tous vos besoins de billets
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-0 shadow-lg text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Billets garantis</h3>
+                <p className="text-gray-600">
+                  Tous nos billets sont vérifiés et authentifiés. 
+                  Garantie de remboursement en cas de problème.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Zap className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Paiement sécurisé</h3>
+                <p className="text-gray-600">
+                  Paiements cryptés et sécurisés. 
+                  Vos données sont protégées à 100%.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg text-center">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Commission transparente</h3>
+                <p className="text-gray-600">
+                  Seulement 10% de commission prélevée sur le vendeur. 
+                  Le prix affiché est le prix final.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Comment ça marche */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Comment ça marche ?
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Un processus simple et transparent pour acheter et vendre vos billets
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Pour les acheteurs */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6 text-blue-600">Pour les acheteurs</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Parcourir les événements</h4>
+                    <p className="text-gray-600">Trouvez l'événement de vos rêves parmi notre sélection</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Payer en sécurité</h4>
+                    <p className="text-gray-600">Paiement sécurisé par carte bancaire ou PayPal</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Recevoir vos billets</h4>
+                    <p className="text-gray-600">Billets électroniques envoyés immédiatement par email</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pour les vendeurs */}
+            <div>
+              <h3 className="text-2xl font-semibold mb-6 text-blue-600">Pour les vendeurs</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-sm font-bold">1</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Créer votre événement</h4>
+                    <p className="text-gray-600">Publiez vos billets en quelques clics</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-sm font-bold">2</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Attendre les ventes</h4>
+                    <p className="text-gray-600">Recevez des notifications à chaque vente</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-sm font-bold">3</span>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Être payé</h4>
+                    <p className="text-gray-600">Transfert automatique après déduction de la commission</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/comment-ca-marche">
+              <Button className="bg-blue-600 hover:bg-blue-700">
+                En savoir plus
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Prêt à commencer ?
+          </h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+            Rejoignez des milliers d'utilisateurs qui font confiance à BilletLibre 
+            pour leurs transactions de billets.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/tickets">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                <Search className="w-5 h-5 mr-2" />
+                Trouver des événements
+              </Button>
+            </Link>
+            <Link href="/creer-evenement">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
+                <TrendingUp className="w-5 h-5 mr-2" />
+                Vendre mes billets
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-white border-t py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold text-blue-600 mb-4">BilletLibre</h3>
+              <p className="text-gray-600">
+                La plateforme de revente de billets la plus sécurisée et transparente.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Acheteurs</h4>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/tickets" className="hover:text-blue-600">Événements</Link></li>
+                <li><Link href="/comment-ca-marche" className="hover:text-blue-600">Comment ça marche</Link></li>
+                <li><Link href="/support" className="hover:text-blue-600">Support</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Vendeurs</h4>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/creer-evenement" className="hover:text-blue-600">Créer un événement</Link></li>
+                <li><Link href="/comment-ca-marche" className="hover:text-blue-600">Tarifs</Link></li>
+                <li><Link href="/support" className="hover:text-blue-600">Aide</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Légal</h4>
+              <ul className="space-y-2 text-gray-600">
+                <li><Link href="/conditions" className="hover:text-blue-600">Conditions d'utilisation</Link></li>
+                <li><Link href="/confidentialite" className="hover:text-blue-600">Politique de confidentialité</Link></li>
+                <li><Link href="/contact" className="hover:text-blue-600">Contact</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t mt-8 pt-8 text-center text-gray-600">
+            <p>&copy; 2024 BilletLibre. Tous droits réservés.</p>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
