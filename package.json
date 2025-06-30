@@ -10,7 +10,9 @@
     "check-stripe": "node scripts/check-stripe-config.js",
     "test-stripe": "node scripts/test-stripe.js",
     "test-stripe-server": "node scripts/test-stripe-server.js",
-    "test-checkout": "node scripts/test-checkout-session.js"
+    "test-checkout": "node scripts/test-checkout-session.js",
+    "vercel-check": "node scripts/vercel-check.js",
+    "test-demo": "node scripts/test-demo-mode.js"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",

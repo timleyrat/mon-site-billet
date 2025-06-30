@@ -1,6 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createCheckoutSession } from '@/lib/stripe';
 import { Ticket } from '@/lib/stripe';
+
+// Mode démo - simulation des fonctions Stripe
+const DEMO_MODE = !process.env.STRIPE_SECRET_KEY;
+
+// Fonction de simulation pour créer une session de checkout
+const createDemoCheckoutSession = async (ticket: Ticket, quantity: number) => {
+  // En mode démo, on simule une session Stripe
+  const sessionId = `demo_session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  
+  console.log(`[DEMO] Session de checkout créée: ${sessionId} pour ${quantity} billet(s) à ${ticket.price / 100}€`);
+  
+  return {
+    id: sessionId,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/success?session_id=${sessionId}`,
+    demo: true
+  };
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,19 +50,33 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Ajouter les métadonnées nécessaires pour la génération du billet
-    const sessionData = {
-      ...ticketData,
-      quantity,
-      // Métadonnées pour le billet
-      eventTitle: ticketData.title,
-      eventDate: ticketData.eventDate,
-      eventLocation: ticketData.location,
-    };
+    if (DEMO_MODE) {
+      // Mode démo - créer une session simulée
+      const session = await createDemoCheckoutSession(ticketData, quantity);
+      
+      return NextResponse.json({ 
+        sessionId: session.id,
+        demo: true,
+        message: 'Session de démonstration créée avec succès'
+      });
+    } else {
+      // Mode production - utiliser Stripe
+      const { createCheckoutSession } = await import('@/lib/stripe');
+      
+      // Ajouter les métadonnées nécessaires pour la génération du billet
+      const sessionData = {
+        ...ticketData,
+        quantity,
+        // Métadonnées pour le billet
+        eventTitle: ticketData.title,
+        eventDate: ticketData.eventDate,
+        eventLocation: ticketData.location,
+      };
 
-    const session = await createCheckoutSession(sessionData, quantity);
+      const session = await createCheckoutSession(sessionData, quantity);
 
-    return NextResponse.json({ sessionId: session.id });
+      return NextResponse.json({ sessionId: session.id });
+    }
   } catch (error) {
     console.error('Erreur lors de la création de la session:', error);
     

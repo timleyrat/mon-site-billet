@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Lock, Eye, EyeOff, ArrowRight, User, Shield, AlertCircle } from "lucide-react"
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/useAuth"
 import { useRouter, useSearchParams } from "next/navigation"
 
-export default function ConnexionPage() {
+function ConnexionPageContent() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -337,4 +337,12 @@ export default function ConnexionPage() {
       </div>
     </div>
   )
+}
+
+export default function ConnexionPage() {
+  return (
+    <Suspense>
+      <ConnexionPageContent />
+    </Suspense>
+  );
 } 

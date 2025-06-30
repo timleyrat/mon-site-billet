@@ -1,29 +1,3 @@
-import Stripe from 'stripe';
-import { getStripeServer } from './stripe';
-
-// Validation de la configuration Stripe
-const validateStripeConfig = () => {
-  const requiredEnvVars = [
-    'STRIPE_SECRET_KEY',
-    'STRIPE_PUBLISHABLE_KEY',
-    'NEXT_PUBLIC_BASE_URL'
-  ];
-
-  const missingVars = requiredEnvVars
-    .map(varName => [varName, process.env[varName]])
-    .filter(([_, value]) => !value);
-
-  if (missingVars.length > 0) {
-    throw new Error(`Variables d'environnement manquantes: ${missingVars.map(([name]) => name).join(', ')}`);
-  }
-};
-
-// Configuration Stripe côté serveur
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-05-28.basil',
-  typescript: true,
-});
-
 // Types pour les comptes vendeurs
 export interface SellerAccount {
   id: string;
@@ -72,6 +46,7 @@ export const calculateSellerAmount = (ticketPrice: number): number => {
 // Création d'un compte Stripe Connect Express pour un vendeur
 export const createSellerConnectAccount = async (sellerId: string): Promise<string> => {
   try {
+    const { getStripeServer } = await import('./stripe');
     const stripe = getStripeServer();
     
     const seller = sellerAccounts.get(sellerId);
@@ -108,6 +83,7 @@ export const createConnectCheckoutSession = async (
   quantity: number = 1
 ) => {
   try {
+    const { getStripeServer } = await import('./stripe');
     const stripe = getStripeServer();
     
     const seller = sellerAccounts.get(ticket.sellerId);
@@ -192,6 +168,7 @@ export const transferToSeller = async (
   sessionId: string
 ): Promise<boolean> => {
   try {
+    const { getStripeServer } = await import('./stripe');
     const stripe = getStripeServer();
     
     const seller = sellerAccounts.get(sellerId);

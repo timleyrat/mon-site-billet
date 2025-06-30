@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CheckCircle, Download, Mail, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -27,7 +27,7 @@ interface GeneratedTicket {
   isDownloaded: boolean;
 }
 
-export default function SuccessPage() {
+function SuccessPageContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
   const [loading, setLoading] = useState(true);
@@ -384,5 +384,13 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense>
+      <SuccessPageContent />
+    </Suspense>
   );
 } 

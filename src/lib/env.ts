@@ -1,40 +1,62 @@
-// Validation des variables d'environnement
-const requiredEnvVars = {
+// Configuration des variables d'environnement
+export const env = {
+  // Variables Stripe
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
-  NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
-} as const;
-
-// Variables optionnelles
-const optionalEnvVars = {
+  STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
-} as const;
+  
+  // URL de base
+  BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
+  
+  // Mode de l'application
+  NODE_ENV: process.env.NODE_ENV || 'development',
+  APP_MODE: process.env.NEXT_PUBLIC_APP_MODE || 'demo',
+  
+  // Autres variables
+  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+};
 
-// Validation des variables requises
-export function validateEnv() {
-  const missingVars = Object.entries(requiredEnvVars)
-    .filter(([_, value]) => !value)
-    .map(([key]) => key);
+// Détection du mode démo
+export const isDemoMode = (): boolean => {
+  return !env.STRIPE_SECRET_KEY || env.APP_MODE === 'demo';
+};
+
+// Validation de la configuration pour la production
+export const validateProductionConfig = (): void => {
+  if (isDemoMode()) {
+    console.log('[DEMO] Mode démonstration activé - Stripe désactivé');
+    return;
+  }
+
+  const requiredVars = [
+    'STRIPE_SECRET_KEY',
+    'NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY',
+    'NEXT_PUBLIC_BASE_URL'
+  ];
+
+  const missingVars = requiredVars.filter(varName => !process.env[varName]);
 
   if (missingVars.length > 0) {
-    throw new Error(
-      `Variables d'environnement manquantes: ${missingVars.join(', ')}`
-    );
+    throw new Error(`Variables d'environnement manquantes pour la production: ${missingVars.join(', ')}`);
   }
-}
+};
 
-// Export des variables d'environnement avec validation
-export const env = {
-  STRIPE_SECRET_KEY: requiredEnvVars.STRIPE_SECRET_KEY!,
-  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: requiredEnvVars.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
-  NEXT_PUBLIC_BASE_URL: requiredEnvVars.NEXT_PUBLIC_BASE_URL!,
-  STRIPE_WEBHOOK_SECRET: optionalEnvVars.STRIPE_WEBHOOK_SECRET,
-} as const;
+// Configuration pour Vercel
+export const getVercelConfig = () => {
+  return {
+    isDemoMode: isDemoMode(),
+    hasStripe: !!env.STRIPE_SECRET_KEY,
+    baseUrl: env.BASE_URL,
+    nodeEnv: env.NODE_ENV,
+    appMode: env.APP_MODE,
+  };
+};
 
 // Configuration Stripe
 export const stripeConfig = {
-  publishableKey: env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+  publishableKey: env.STRIPE_PUBLISHABLE_KEY,
   secretKey: env.STRIPE_SECRET_KEY,
   webhookSecret: env.STRIPE_WEBHOOK_SECRET,
-  baseUrl: env.NEXT_PUBLIC_BASE_URL,
+  baseUrl: env.BASE_URL,
 } as const; 
