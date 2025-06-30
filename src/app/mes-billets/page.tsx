@@ -42,12 +42,12 @@ export default function MesBilletsPage() {
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
         <header className="bg-white border-b sticky top-0 z-40">
-          <div className="container mx-auto px-4 py-4">
+          <div className="container mx-auto px-4 py-3 sm:py-4">
             <div className="flex items-center justify-between">
-              <Link href="/" className="text-2xl font-bold text-blue-600">
+              <Link href="/" className="text-xl sm:text-2xl font-bold text-blue-600">
                 BilletLibre
               </Link>
-              <nav className="flex gap-6">
+              <nav className="hidden sm:flex gap-6">
                 <Link href="/tickets" className="text-gray-600 hover:text-blue-600">
                   Événements
                 </Link>
@@ -62,25 +62,25 @@ export default function MesBilletsPage() {
           </div>
         </header>
 
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
           <div className="max-w-4xl mx-auto">
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-12 text-center">
-                <div className="text-6xl mb-4">🎫</div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              <CardContent className="p-6 sm:p-12 text-center">
+                <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🎫</div>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                   Aucun billet trouvé
                 </h1>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                <p className="text-gray-600 mb-4 sm:mb-6 max-w-md mx-auto text-sm sm:text-base">
                   Vous n'avez pas encore acheté de billets. Commencez par explorer nos événements !
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/tickets">
-                    <Button className="bg-blue-600 hover:bg-blue-700">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                  <Link href="/tickets" className="w-full sm:w-auto">
+                    <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
                       Voir les événements
                     </Button>
                   </Link>
-                  <Link href="/creer-evenement">
-                    <Button variant="outline">
+                  <Link href="/creer-evenement" className="w-full sm:w-auto">
+                    <Button variant="outline" className="w-full sm:w-auto">
                       Créer un événement
                     </Button>
                   </Link>
@@ -97,12 +97,12 @@ export default function MesBilletsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white border-b sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-blue-600">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-blue-600">
               BilletLibre
             </Link>
-            <nav className="flex gap-6">
+            <nav className="hidden sm:flex gap-6">
               <Link href="/tickets" className="text-gray-600 hover:text-blue-600">
                 Événements
               </Link>
@@ -117,79 +117,79 @@ export default function MesBilletsPage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         <div className="max-w-6xl mx-auto">
           {/* En-tête */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Mes Billets</h1>
-            <p className="text-gray-600">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Mes Billets</h1>
+            <p className="text-gray-600 text-sm sm:text-base">
               Gérez et téléchargez vos billets d'événements
             </p>
           </div>
 
           {/* Statistiques */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600">{userTickets.length}</div>
-                <div className="text-sm text-gray-600">Total</div>
+              <CardContent className="p-3 sm:p-4 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">{userTickets.length}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Total</div>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600">{activeTickets.length}</div>
-                <div className="text-sm text-gray-600">Actifs</div>
+              <CardContent className="p-3 sm:p-4 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">{activeTickets.length}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Actifs</div>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600">{pastTickets.length}</div>
-                <div className="text-sm text-gray-600">Passés</div>
+              <CardContent className="p-3 sm:p-4 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">{pastTickets.length}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Passés</div>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600">
+              <CardContent className="p-3 sm:p-4 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600">
                   {userTickets.reduce((sum, ticket) => sum + ticket.price, 0)}€
                 </div>
-                <div className="text-sm text-gray-600">Valeur totale</div>
+                <div className="text-xs sm:text-sm text-gray-600">Valeur totale</div>
               </CardContent>
             </Card>
           </div>
 
           {/* Filtres et recherche */}
-          <Card className="border-0 shadow-lg mb-8">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="flex-1 relative">
-                  <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+          <Card className="border-0 shadow-lg mb-6 sm:mb-8">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="relative">
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
                   <input
                     type="text"
                     placeholder="Rechercher un événement..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-9 sm:pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                   />
                 </div>
                 <div className="flex gap-2">
                   <Button
                     variant={filter === "all" ? "default" : "outline"}
                     onClick={() => setFilter("all")}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-sm"
                   >
                     Tous
                   </Button>
                   <Button
                     variant={filter === "active" ? "default" : "outline"}
                     onClick={() => setFilter("active")}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-sm"
                   >
                     Actifs
                   </Button>
                   <Button
                     variant={filter === "past" ? "default" : "outline"}
                     onClick={() => setFilter("past")}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-sm"
                   >
                     Passés
                   </Button>

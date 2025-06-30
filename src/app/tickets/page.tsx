@@ -97,33 +97,37 @@ export default function TicketsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header avec recherche */}
       <div className="bg-white border-b sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col lg:flex-row gap-4 items-center">
-            <div className="flex-1 w-full max-w-2xl">
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
+            {/* Barre de recherche */}
+            <div className="w-full">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Rechercher un événement, un artiste ou un lieu..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-9 sm:pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                 />
               </div>
             </div>
+            
+            {/* Boutons filtres et recherche */}
             <div className="flex gap-2">
               <button 
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
+                className={`flex items-center gap-2 px-3 sm:px-4 py-2 border rounded-lg transition-colors text-sm sm:text-base ${
                   showFilters 
                     ? 'bg-blue-600 text-white border-blue-600' 
                     : 'border-gray-300 hover:bg-gray-50'
                 }`}
               >
                 <Filter className="w-4 h-4" />
-                Filtres
+                <span className="hidden sm:inline">Filtres</span>
+                <span className="sm:hidden">Filtres</span>
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base">
                 Rechercher
               </button>
             </div>
@@ -131,16 +135,16 @@ export default function TicketsPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex flex-col lg:flex-row gap-6">
+      <div className="container mx-auto px-4 py-4 sm:py-6">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
           {/* Sidebar avec filtres */}
-          <div className={`lg:w-64 space-y-6 transition-all duration-300 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+          <div className={`lg:w-64 space-y-4 sm:space-y-6 transition-all duration-300 ${showFilters ? 'block' : 'hidden lg:block'}`}>
             {/* Catégories */}
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <h3 className="font-semibold text-lg mb-4">Catégories</h3>
-              <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+              <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Catégories</h3>
+              <div className="space-y-1 sm:space-y-2">
                 {updatedCategories.map((category) => (
-                  <label key={category.value} className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded">
+                  <label key={category.value} className="flex items-center justify-between cursor-pointer hover:bg-gray-50 p-2 rounded text-sm sm:text-base">
                     <div className="flex items-center gap-2">
                       <input 
                         type="checkbox" 
@@ -150,18 +154,18 @@ export default function TicketsPage() {
                       />
                       <span>{category.name}</span>
                     </div>
-                    <span className="text-sm text-gray-500">{category.count}</span>
+                    <span className="text-xs sm:text-sm text-gray-500">{category.count}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             {/* Fourchette de prix */}
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <h3 className="font-semibold text-lg mb-4">Prix</h3>
-              <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+              <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Prix</h3>
+              <div className="space-y-1 sm:space-y-2">
                 {priceRanges.map((range, index) => (
-                  <label key={index} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded">
+                  <label key={index} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded text-sm sm:text-base">
                     <input 
                       type="radio" 
                       name="price" 
@@ -176,11 +180,11 @@ export default function TicketsPage() {
             </div>
 
             {/* Date */}
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <h3 className="font-semibold text-lg mb-4">Date</h3>
-              <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+              <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Date</h3>
+              <div className="space-y-1 sm:space-y-2">
                 {dateRanges.map((range) => (
-                  <label key={range.value} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded">
+                  <label key={range.value} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded text-sm sm:text-base">
                     <input 
                       type="radio" 
                       name="date" 
@@ -195,11 +199,11 @@ export default function TicketsPage() {
             </div>
 
             {/* Note */}
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <h3 className="font-semibold text-lg mb-4">Note minimum</h3>
-              <div className="space-y-2">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+              <h3 className="font-semibold text-base sm:text-lg mb-3 sm:mb-4">Note minimum</h3>
+              <div className="space-y-1 sm:space-y-2">
                 {[4.5, 4.0, 3.5, 3.0].map((rating) => (
-                  <label key={rating} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded">
+                  <label key={rating} className="flex items-center cursor-pointer hover:bg-gray-50 p-2 rounded text-sm sm:text-base">
                     <input 
                       type="radio" 
                       name="rating" 
@@ -217,7 +221,7 @@ export default function TicketsPage() {
             </div>
 
             {/* Bouton pour réinitialiser les filtres */}
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
               <button 
                 onClick={() => {
                   setSelectedCategories(['all']);
@@ -226,7 +230,7 @@ export default function TicketsPage() {
                   setSelectedRating(0);
                   setSearchTerm("");
                 }}
-                className="w-full px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                className="w-full px-3 sm:px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
               >
                 Réinitialiser les filtres
               </button>

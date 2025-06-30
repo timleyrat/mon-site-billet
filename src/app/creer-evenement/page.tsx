@@ -59,27 +59,27 @@ export default function CreerEvenement() {
       <div className="min-h-screen bg-gray-50">
         <Header />
 
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-6 sm:py-8">
           <div className="max-w-2xl mx-auto">
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-12 text-center">
-                <div className="text-6xl mb-4">🔐</div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              <CardContent className="p-6 sm:p-12 text-center">
+                <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">🔐</div>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                   Connexion requise
                 </h1>
-                <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                <p className="text-gray-600 mb-4 sm:mb-6 max-w-md mx-auto text-sm sm:text-base">
                   Vous devez être connecté pour créer un événement et vendre vos billets. 
                   Connectez-vous ou créez un compte pour continuer.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/connexion">
-                    <Button className="bg-blue-600 hover:bg-blue-700 flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                  <Link href="/connexion" className="w-full sm:w-auto">
+                    <Button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 flex items-center gap-2">
                       <LogIn className="w-4 h-4" />
                       Se connecter
                     </Button>
                   </Link>
-                  <Link href="/">
-                    <Button variant="outline">
+                  <Link href="/" className="w-full sm:w-auto">
+                    <Button variant="outline" className="w-full sm:w-auto">
                       Retour à l'accueil
                     </Button>
                   </Link>
@@ -169,23 +169,23 @@ export default function CreerEvenement() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         <div className="max-w-4xl mx-auto">
           {/* En-tête */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Créer un événement</h1>
-            <p className="text-gray-600">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Créer un événement</h1>
+            <p className="text-gray-600 text-sm sm:text-base">
               Vendez vos billets en toute simplicité avec notre plateforme sécurisée
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
             {/* Informations de base */}
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-6">Informations de base</h2>
+              <CardContent className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Informations de base</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Titre de l'événement *
@@ -196,7 +196,7 @@ export default function CreerEvenement() {
                       value={formData.title}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Ex: PSG vs Real Madrid"
                     />
                   </div>
@@ -210,7 +210,7 @@ export default function CreerEvenement() {
                       value={formData.category}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     >
                       <option value="">Sélectionnez une catégorie</option>
                       {categories.map(category => (
@@ -229,7 +229,7 @@ export default function CreerEvenement() {
                       value={formData.date}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     />
                   </div>
 
@@ -243,7 +243,7 @@ export default function CreerEvenement() {
                       value={formData.time}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     />
                   </div>
                 </div>
@@ -252,10 +252,10 @@ export default function CreerEvenement() {
 
             {/* Localisation */}
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-6">Localisation</h2>
+              <CardContent className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Localisation</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Lieu/Venue *
@@ -266,7 +266,7 @@ export default function CreerEvenement() {
                       value={formData.location}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Ex: Parc des Princes"
                     />
                   </div>
@@ -281,7 +281,7 @@ export default function CreerEvenement() {
                       value={formData.address}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="Ex: 24 Rue du Commandant Guilbaud, 75016 Paris"
                     />
                   </div>
@@ -291,8 +291,8 @@ export default function CreerEvenement() {
 
             {/* Description */}
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-6">Description</h2>
+              <CardContent className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Description</h2>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -303,7 +303,7 @@ export default function CreerEvenement() {
                     value={formData.description}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                     placeholder="Décrivez votre événement, les artistes, les équipes, etc."
                   />
                 </div>
@@ -312,10 +312,10 @@ export default function CreerEvenement() {
 
             {/* Billets */}
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-6">Billets</h2>
+              <CardContent className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Billets</h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Prix par billet (€) *
@@ -328,7 +328,7 @@ export default function CreerEvenement() {
                       required
                       min="0"
                       step="0.01"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="89.00"
                     />
                   </div>
@@ -344,7 +344,7 @@ export default function CreerEvenement() {
                       onChange={handleInputChange}
                       required
                       min="1"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                       placeholder="2"
                     />
                   </div>
@@ -362,8 +362,8 @@ export default function CreerEvenement() {
 
             {/* Images */}
             <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-6">Images</h2>
+              <CardContent className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Images</h2>
                 
                 <div className="space-y-4">
                   <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
@@ -414,7 +414,7 @@ export default function CreerEvenement() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   <>
@@ -430,7 +430,7 @@ export default function CreerEvenement() {
               </Button>
               
               <Link href="/tickets">
-                <Button type="button" variant="outline" className="flex-1">
+                <Button type="button" variant="outline" className="flex-1 text-sm sm:text-base">
                   Annuler
                 </Button>
               </Link>
